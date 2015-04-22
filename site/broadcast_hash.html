@@ -1,0 +1,82 @@
+<html>
+<head>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bitcore/bitcore.min.js"></script>
+    <script src="../js/bitcoinjs-min.js"></script>
+    <script src="../js/mnemonic.js"></script>
+    <script src="../js/xcp-js/pushtx.js"></script>
+    <script src="../js/xcp-js/transactions.js"></script>
+    <script src="../js/xcp-js/rc4.js"></script>
+    <script src="../js/xcp-js/convert-type.js"></script>
+    <script src="../js/xcp-js/decode.js"></script>
+    <script src="../js/broadcast-hash.js"></script>
+
+    
+<script>
+
+var test = create_hash_broadcast_data("2bd5348720117bef2e55e8a2b65694bdf2eb3f79f99f6604ae3ab237b580f19b", 0);  
+    
+console.log(test);  
+console.log(test.length); 
+    
+hex_byte();    
+    
+var bitcore = require('bitcore');
+   
+$( document ).ready(function() {
+          
+    $("#gettransbutton").click(function(){
+    
+        var mnemonic = $("#mnemonic").val();
+        var add_from = $("#add_from").val();  // sending address
+        
+        var value = $("#value").val();
+
+        var hash = $("#hash").val();
+        
+        var msig_total = 0.000078;  //total btc to multisig output (returned to sender)
+        var transfee = 0.0001;  //bitcoin tx fee
+        
+        hashBroadcast(add_from, hash, value, msig_total, transfee, mnemonic, function(rawtx) { 
+        
+            var tx_id = rawtotxid(rawtx);
+            $("#txid").append(tx_id);
+        
+        });
+        
+    });
+
+});
+    
+
+</script>
+</head>
+<body>
+
+    
+    
+    <h1 style="margin-top: 20px;">Broadcast Hash</h1>
+   
+    <div style="margin-top: 30px;">Mnemonic Passphrase (12 words)</div>
+    <input type="text" id="mnemonic" value="" required>
+
+    <div style="margin-top: 20px;">Sending Address</div>
+    <input type="text" id="add_from" value="" required>
+
+    <div style="margin-top: 20px;">Broadcast Value</div>
+    <input type="text" id="value" value="0" required>
+    
+    <div style="margin-top: 20px;">Broadcast Hash</div>
+    <input type="text" id="hash" value="" maxlength="64" required>
+    
+    <div style="margin-top: 30px;">
+    <input type="button" id="gettransbutton" value="Get BTC Raw Transaction Data">
+    </div>
+    
+    <div style="margin-top: 30px; margin-bottom: 10px;" id="raw">Signed Raw TX: </div>
+    <div style="margin-top: 10px; margin-bottom: 100px;" id="txid">TX ID: </div>
+    
+    
+        
+</body>
+</html>
