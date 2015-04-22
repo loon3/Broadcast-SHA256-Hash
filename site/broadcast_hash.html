@@ -63,14 +63,14 @@ $( document ).ready(function() {
     <div style="margin-top: 20px;">Sending Address</div>
     <input type="text" id="add_from" value="" required>
 
+    <div style="margin-top: 20px;">SHA256 Hash to Broadcast</div>
+    <input type="text" id="hash" value="" maxlength="64" required>
+
     <div style="margin-top: 20px;">Broadcast Value</div>
     <input type="text" id="value" value="0" required>
     
-    <div style="margin-top: 20px;">Broadcast Hash</div>
-    <input type="text" id="hash" value="" maxlength="64" required>
-    
     <div style="margin-top: 30px;">
-    <input type="button" id="gettransbutton" value="Get BTC Raw Transaction Data">
+    <input type="button" id="gettransbutton" value="Get Signed Raw Transaction amd TX ID">
     </div>
     
     <div style="margin-top: 30px; margin-bottom: 10px;" id="raw">Signed Raw TX: </div>
