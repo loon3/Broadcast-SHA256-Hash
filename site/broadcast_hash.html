@@ -13,7 +13,6 @@
 
     
 <script>
-
 var test = create_hash_broadcast_data("2bd5348720117bef2e55e8a2b65694bdf2eb3f79f99f6604ae3ab237b580f19b", 0);  
     
 console.log(test);  
@@ -31,7 +30,6 @@ $( document ).ready(function() {
         var add_from = $("#add_from").val();  // sending address
         
         var value = $("#value").val();
-
         var hash = $("#hash").val();
         
         var msig_total = 0.000078;  //total btc to multisig output (returned to sender)
@@ -40,15 +38,13 @@ $( document ).ready(function() {
         hashBroadcast(add_from, hash, value, msig_total, transfee, mnemonic, function(rawtx) { 
         
             var tx_id = rawtotxid(rawtx);
-            $("#txid").append(tx_id);
+            $("#txid").text(tx_id);
         
         });
         
     });
-
 });
     
-
 </script>
 </head>
 <body>
@@ -73,8 +69,8 @@ $( document ).ready(function() {
     <input type="button" id="gettransbutton" value="Get Signed Raw Transaction amd TX ID">
     </div>
     
-    <div style="margin-top: 30px; margin-bottom: 10px;" id="raw">Signed Raw Tx: </div>
-    <div style="margin-top: 10px; margin-bottom: 100px;" id="txid">Bitcoin Tx Hash: </div>
+    <div style="margin-top: 30px; margin-bottom: 10px;">Signed Raw Tx: <span id="raw"></span></div>
+    <div style="margin-top: 10px; margin-bottom: 100px;">Bitcoin Tx Hash: <span id="txid"></span></div>
     
     
         
