@@ -14,91 +14,62 @@
 var bitcore = require('bitcore');
    
 $( document ).ready(function() {
-    
-//    value_binary = value_binary.replace(/\s+/g, '');
-//    console.log(value_binary.substring(0,4));
-//    console.log(parseInt(parseInt(value_binary.substring(0,4)),16));
-    
+      
     
     $("#getdatabutton").click(function(){
          
-
 	    var tx_id = $("#tx_id").val();
         
         
         get_xcp_encoded(tx_id, function(utxo_hash, data_chunk){
-            //$("#arc").html(data_chunk);
-
+            
             var data = data_chunk.substring(60, 26);
-
-
 	    var value_hex = data.substring(8);	
             var value_hex = value_hex.slice(0, -10);	
 	    var value_array = value_hex.match(/.{2}/g);
 	    
 	    var value_final = conv_floating_pt(value_array);
-
  	    var total_length_hex = data_chunk.substring(0,2);
 	    console.log(parseInt(total_length_hex, 16));
-
             var message_length_hex = data.slice(-2);
 	    console.log(parseInt(message_length_hex, 16));
-
 	
             var message_hex = data_chunk.substring(60);
             var timestamp_hex = data.substring(0,8);
             
-
 	    var message_hex_array = message_hex.match(/.{2}/g);	
 	    removeA(message_hex_array, '00');	
 	    var message_length = message_hex_array.length;	
-
-
-
             var message = hex2bin(message_hex);
-
 	    var timestamp = parseInt(timestamp_hex, 16);
             
-            
-            $("#assetid").html(data);
             $("#timestamp").html(timestamp);
 	    $("#value").html(value_final);
-	    $("#feefraction").html(feefraction);
             $("#broadcasttext").html(message_hex);
-
 	    
-	    console.log(message);	
-	    console.log(message_length);	
-            
-    console.log(data_chunk);        
-    var message = "XCPELECTION 1";
-    var value = 101;
-    var feefraction = 0;
-    
-    console.log(create_broadcast_data(message, value, feefraction));
+	   
     
         });
     });
     
     
-
-
 });
     
-
 </script>
 </head>
 <body>
-    <h1 style="margin-top: 20px;">View Broadcasted Hash</h1>
+    <h1 style="margin-top: 20px;">View Broadcasted SHA256 Hash</h1>
     <div style="margin-top: 50px;">Bitcoin Tx Hash</div>
-    <input type="text" id="tx_id" label="Tx Hash" value="d358e29c19766e28dbb93dac3287bb50c94d6ebeba98602ca3a5067db1fea591" required>
+    <input type="text" id="tx_id" label="Tx Hash" 
+
+value="4290bed336e784594ca623c2306b0fda7d2473b2e6a573364e48ca5fa1ce3b4f" required>
 
     <div style="margin-top: 20px;">
     <input type="button" id="getdatabutton" value="Get XCP Data">
-     
+    
     <div style="margin-top: 40px;">Broadcasted Hash: <span id="broadcasttext"></span></div>    
     
-    <div style="margin-top: 20px;">Timestamp: <span id="timestamp"></span></div>
+    <div style="margin-top: 20px;">Timestamp (UNIX): <span id="timestamp"></span></div>
 
     <div style="margin-top: 20px;">Value: <span id="value"></span></div>
    
