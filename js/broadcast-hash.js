@@ -131,7 +131,7 @@ function hashBroadcast(add_from, message, value, msig_total, transfee, mnemonic,
         
         console.log(final_trans);
         
-        $("#raw").append(final_trans); 
+        $("#raw").text(final_trans); 
         
         callback(final_trans);
         //sendBTCpush(final_trans);  //uncomment to push raw tx to the bitcoin network
