@@ -18,8 +18,7 @@ $( document ).ready(function() {
     
     $("#getdatabutton").click(function(){
          
-	    var tx_id = $("#tx_id").val();
-        
+	var tx_id = $("#tx_id").val();
         
         get_xcp_encoded(tx_id, function(utxo_hash, data_chunk){
             
@@ -47,9 +46,8 @@ $( document ).ready(function() {
 	    $("#value").html(value_final);
             $("#broadcasttext").html(message_hex);
 	    
-	   
-    
-        });
+	});
+	
     });
     
     
@@ -60,12 +58,9 @@ $( document ).ready(function() {
 <body>
     <h1 style="margin-top: 20px;">View Broadcasted SHA256 Hash</h1>
     <div style="margin-top: 50px;">Bitcoin Tx Hash</div>
-    <input type="text" id="tx_id" label="Tx Hash" 
+    <input type="text" id="tx_id" label="Tx Hash" value="4290bed336e784594ca623c2306b0fda7d2473b2e6a573364e48ca5fa1ce3b4f" required>
 
-value="4290bed336e784594ca623c2306b0fda7d2473b2e6a573364e48ca5fa1ce3b4f" required>
-
-    <div style="margin-top: 20px;">
-    <input type="button" id="getdatabutton" value="Get XCP Data">
+    <div style="margin-top: 20px;"><input type="button" id="getdatabutton" value="Get XCP Data"></div>
     
     <div style="margin-top: 40px;">Broadcasted Hash: <span id="broadcasttext"></span></div>    
     
